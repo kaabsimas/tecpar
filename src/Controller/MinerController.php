@@ -2,15 +2,24 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\ByteString;
-
-class MinerController
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
+class MinerController extends AbstractController
 {
     const DIFFICULTY = 4; 
 
-    public function mine($word): JsonResponse
+    public function mine(Request $request, RateLimiterFactory $anonymousApiLimiter): JsonResponse
     {
+        $limiter = $anonymousApiLimiter->create($_SERVER['HTTP_X_FORWARDED_FOR']);
+        if (false === $limiter->consume(1)->isAccepted()) {
+            return new JsonResponse("Too Many Attempts", JsonResponse::HTTP_TOO_MANY_REQUESTS);
+        }
+
+        $word = $request->get('word');
         $counter = 0;
         $hash = '';
 
