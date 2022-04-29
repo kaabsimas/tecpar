@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 100,
+            "driver": "SQLite",
+            "name": "tecpar",
+            "database": "${workspaceFolder:tecpar}/var/data.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
