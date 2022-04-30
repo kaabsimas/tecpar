@@ -36,6 +36,7 @@ class AvatoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        set_time_limit(3600);
         $gap = new \DateInterval('PT6S');
         $entry = $input->getArgument('entry');
         $requests = $input->getOption('requests');
@@ -68,9 +69,9 @@ class AvatoCommand extends Command
 
             $diff = $mark2->diff($mark1);
 
-            if($gap > $diff) {
+            if($gap >= $diff) {
                 $waiting = (float)$gap->format('%s.%f') - (float)$diff->format('%s.%f');
-
+                $console->writeln("esperando.....");
                 sleep($waiting);
             }
         }
