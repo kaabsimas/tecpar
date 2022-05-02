@@ -36,13 +36,14 @@ php bin/console doctrine:migrations:migrate first -n
 
 ## Testando a URL
 
-Para realizar chamadas na URL de busca de hash, deve-seminiciar o servidor do Symfony:
+Para realizar chamadas na URL de busca de hash, deve-se iniciar o servidor do Symfony:
 
 ```
 symfony server:start
 ```
 
-E em seguida, realizar uma requisição http GET para `http://localhost:8000/miner/mine/{entrada}` ou acessar o mesmo endereço via um navegador, onde {entrada} é a palavra para a qual se deseja encontrar um hash que atenda à uma determinada dificuldade:
+E em seguida, realizar uma requisição http GET para `http://localhost:8000/miner/mine/{entrada}` ou acessar o mesmo endereço via um navegador, onde {entrada} é a palavra para a qual se deseja encontrar um hash que atenda à uma determinada dificuldade.
+
 Exemplo de requisição realizada com o Insomnia:
 
 ```
@@ -102,7 +103,7 @@ php bin/console doctrine:migrations:migrate
 
 ## Visualização de resultados
 
-Para consultar os resultados, em páginas de 10 registros, a rota principal do site retorna um objeto json contendo as informações:
+Para consultar os resultados, em páginas de 10 registros, a rota index do site retorna um objeto json contendo as informações:
 
 ```
 > GET / HTTP/1.1
