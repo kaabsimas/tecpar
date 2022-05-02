@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+results:
+   path: /
+   controller: App\Controller\ResultsController::index
 miner_mine:
   path: /miner/mine/{word}
   controller: App\Controller\MinerController::mine
